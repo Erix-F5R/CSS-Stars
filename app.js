@@ -1,3 +1,10 @@
+let interations = 100;
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    interations = 25;
+  }
+  
+
 const generateArt = () => {
   let [width, height, left, top, background, deg, radius] = [
     100,
@@ -16,7 +23,7 @@ const generateArt = () => {
   const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const load = async () => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < interations; i++) {
       const star = document.createElement("div");
       star.setAttribute("id", `star-${i}`);
 
