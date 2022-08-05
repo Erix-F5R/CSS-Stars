@@ -61,7 +61,12 @@ const generateArt = () => {
       newDiv.style.rotate = choices.rotate + "deg";
       newDiv.style.animation = 'spin 75s infinite linear';
 
-      if (random(1)) {
+      let buildMore = false;
+      if (random(15) > 0) {
+        buildMore = true;
+      }
+
+      if (buildMore) {
         let child = buildChild(choices);
         newDiv.appendChild(child);
       }
