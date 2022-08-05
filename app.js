@@ -38,6 +38,8 @@ const generateArt = () => {
       choices.radius = "50%";
       choices.rotate = random(deg);
 
+      choices.reduction = (random(2)+8)/10 ;
+
       newDiv.style.width = choices.width + "px";
       newDiv.style.height = choices.height + "px";
 
@@ -50,7 +52,7 @@ const generateArt = () => {
       newDiv.style.borderRadius = choices.radius;
 
       newDiv.style.rotate = choices.rotate + "deg";
-      newDiv.style.animation = 'spin 100s infinite linear';
+      newDiv.style.animation = 'spin 75s infinite linear';
 
       if (random(1)) {
         let child = buildChild(choices);
@@ -75,13 +77,19 @@ const buildChild = (choices) => {
 
   const child = document.createElement("div");
 
-  child.style.width = choices.width * 0.8 + "px";
-  child.style.height = choices.height * 0.8 + "px";
+  child.style.width = choices.width * choices.reduction + "px";
+  child.style.height = choices.height * choices.reduction + "px";
+
+  choices.width = choices.width* choices.reduction;
+  choices.height = choices.height* choices.reduction;
 
   child.style.position = "absolute";
 
-  child.style.left = choices.left * 0.8 + "%";
-  child.style.top = choices.top * 0.8 + "%";
+  child.style.left = choices.left * choices.reduction + "%";
+  child.style.top = choices.top * choices.reduction + "%";
+  
+  choices.left = choices.left*choices.reduction;
+  choices.top = choices.top*choices.reduction;
 
   child.style.background = choices.background;
   child.style.borderRadius = choices.radius;
@@ -89,7 +97,7 @@ const buildChild = (choices) => {
   child.style.rotate = choices.rotate + "deg";
 
   child.style.boxShadow = "0px 0px 5px 5px rgba(0, 0, 0, 0.5)";
-  child.style.animation = 'spin 100s infinite linear';
+  child.style.animation = 'spin 75s infinite linear';
 
   if (buildMore) {
     let newChild = buildChild(choices);
